@@ -1,11 +1,18 @@
 <div class="container">
-  <h1>Liste des cocktails </h1>
-
-  <ul>
+  <br>
+  <div class="row">
     <% @cocktails.each do |cocktail| %>
-      <li><%= link_to cocktail.name, cocktail_path(cocktail.id) %></li>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd');">
+          <div class="card-category">Popular</div>
+          <div class="card-description">
+            <h2><%= cocktail.name %></h2>
+            <p>Very cool cocktail</p>
+          </div>
+          <%= link_to "", cocktail_path(cocktail.id), class: 'card-link' %>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 
-  <%= link_to "Ajouter un cocktail", new_cocktail_path, class: "btn btn-primary" %>
 </div>

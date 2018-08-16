@@ -1,6 +1,11 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    if params[:search]
+      @search = params[:search].downcase
+      @cocktails = Cocktail.where('lower(name) LIKE ?', "%#{@search}%")
+    else
+      @cocktails = Cocktail.all
+    end
   end
 
   def show
@@ -20,6 +25,12 @@ class CocktailsController < ApplicationController
     else
       render "cocktails/new"
     end
+  end
+
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.destroy!
+    redirect_to cocktails_path
   end
 
   private
