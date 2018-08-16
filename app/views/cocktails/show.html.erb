@@ -1,0 +1,22 @@
+<div class="container">
+  <h1><%= @cocktail.name %></h1>
+
+  <h3>Ingredients</h3>
+
+  <% if @cocktail.doses.first.nil? %>
+    <p>No ingredient yet</p>
+  <% else %>
+    <% @cocktail.doses.each do |dose| %>
+      <li>
+        <%= dose.description %> - <%= dose.ingredient.name %><%= link_to dose_path(dose.id), method: 'DELETE', data: { confirm: "Are you sure you want to delete #{dose.description} - #{dose.ingredient}?" } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+      </li>
+    <% end %>
+  <% end %>
+
+  <h3>Add an ingredient</h3>
+  <%= render 'doses/dose_form' %>
+  <br>
+  <%= link_to "Back", cocktails_path, class: 'btn btn-success' %>
+</div>
