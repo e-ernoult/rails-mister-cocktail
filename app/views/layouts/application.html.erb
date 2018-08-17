@@ -14,7 +14,10 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= yield %>
-    <%= render 'shared/footer' %>
+    <div>
+      <%= render 'shared/footer' %>
+    </div>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag "application" %>
   </body>
